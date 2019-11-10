@@ -26,19 +26,23 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == 273:
                 # move snake up one
-                head = head.move(0,-block_size)
+                head.move_ip(0,-block_size)
+                screen.fill(backgroundcolor)
                 pygame.draw.rect(screen,head_color,head)
             elif event.key == 274:
                 # move snake down one 
                 head = head.move(0,block_size)
+                screen.fill(backgroundcolor)
                 pygame.draw.rect(screen,head_color,head)
             elif event.key == 275:
                 # move snake right one 
                 head = head.move(block_size,0)
+                screen.fill(backgroundcolor)
                 pygame.draw.rect(screen,head_color,head) 
             elif event.key == 276:
                 #move snake right one
                 head = head.move(-block_size,0)
+                screen.fill(backgroundcolor)
                 pygame.draw.rect(screen,head_color,head)
         if event.type == pygame.QUIT:
             running = False
