@@ -7,37 +7,39 @@ height = 500
 screen = pygame.display.set_mode((width,height))
 
 block_size = 10
-color = (255,255,255)
-head_color = (255,255,0)
+backgroundcolor = (0,0,0)
+head_color = (255,0,0)
 running = True
 
-for y in range(height):
-    for x in range(width):
-        rect = pygame.Rect(y * (block_size + 2), x * (block_size + 2), block_size,block_size)
-        pygame.draw.rect(screen,color,rect)
+for y in range(height//10 + 10):
+    for x in range(width//10 + 10):
+        rect = pygame.Rect(y * (block_size), x * (block_size), block_size,block_size)
+        pygame.draw.rect(screen,backgroundcolor,rect)
 
 snake = [10,10]
 x,y = snake
-rect = pygame.Rect(y * (block_size + 2), x * (block_size + 2), block_size,block_size)
-pygame.draw.rect(screen,head_color,rect)
+head = pygame.Rect(y ,x, block_size,block_size)
+pygame.draw.rect(screen,head_color,head)
 
 while running:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == 273:
                 # move snake up one
-                x += block_size
-                rect = pygame.Rect(y * (block_size + 2), x * (block_size + 2), block_size,block_size)
-                pygame.draw.rect(screen,head_color,rect)
+                head = head.move(0,-block_size)
+                pygame.draw.rect(screen,head_color,head)
             elif event.key == 274:
-                pass
-                # move snake down one
+                # move snake down one 
+                head = head.move(0,block_size)
+                pygame.draw.rect(screen,head_color,head)
             elif event.key == 275:
-                pass
-                # move snake right one
+                # move snake right one 
+                head = head.move(block_size,0)
+                pygame.draw.rect(screen,head_color,head) 
             elif event.key == 276:
-                pass
                 #move snake right one
+                head = head.move(-block_size,0)
+                pygame.draw.rect(screen,head_color,head)
         if event.type == pygame.QUIT:
             running = False
     
