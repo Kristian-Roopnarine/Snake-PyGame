@@ -28,25 +28,25 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == 273:
                 # move snake up one
-                head.move_ip(0,-block_size)
+                head.move_ip(0,-block_size/5)
                 screen.fill(backgroundcolor)
                 pygame.draw.rect(screen,head_color,head)
                 direction = 'up'
             elif event.key == 274:
                 # move snake down one 
-                head = head.move(0,block_size)
+                head = head.move(0,block_size/5)
                 screen.fill(backgroundcolor)
                 pygame.draw.rect(screen,head_color,head)
                 direction = 'down'
             elif event.key == 275:
                 # move snake right one 
-                head = head.move(block_size,0)
+                head = head.move(block_size/5,0)
                 screen.fill(backgroundcolor)
                 pygame.draw.rect(screen,head_color,head) 
                 direction = 'right'
             elif event.key == 276:
                 #move snake right one
-                head = head.move(-block_size,0)
+                head = head.move(-block_size/5,0)
                 screen.fill(backgroundcolor)
                 pygame.draw.rect(screen,head_color,head)
                 direction = 'left'
@@ -54,19 +54,19 @@ while running:
             running = False
     
     if direction == 'right':
-        head = head.move(block_size,0)
+        head = head.move(block_size/5,0)
         screen.fill(backgroundcolor)
         pygame.draw.rect(screen,head_color,head) 
     if direction == 'left':
-        head = head.move(-block_size,0)
+        head = head.move(-block_size/5,0)
         screen.fill(backgroundcolor)
         pygame.draw.rect(screen,head_color,head)
     if direction == 'down':
-        head = head.move(0,block_size)
+        head = head.move(0,block_size/5)
         screen.fill(backgroundcolor)
         pygame.draw.rect(screen,head_color,head)
     if direction == 'up':
-        head.move_ip(0,-block_size)
+        head.move_ip(0,-block_size/5)
         screen.fill(backgroundcolor)
         pygame.draw.rect(screen,head_color,head)
 
