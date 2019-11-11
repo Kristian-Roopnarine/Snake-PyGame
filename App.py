@@ -29,7 +29,8 @@ class App:
                 pygame.draw.rect(self.screen,self.background,rect)
 
     def refresh(self):
-        pass
+        self.screen.fill(self.background)
+        self.draw_snake()
 
 
     def detect_keypress(self,e):
