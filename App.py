@@ -3,6 +3,8 @@ from Player import Player
 from Apple import Apple
 import time
 import random
+from tkinter import *
+from tkinter import messagebox
 
 class App:
 
@@ -17,6 +19,7 @@ class App:
         self.running = True
         self.clock = pygame.time.Clock()
         self.apple = Apple()
+        Tk().wm_withdraw()
     
     def drawSnake(self):
         # get positions of snake and turn into rectangles
@@ -74,13 +77,13 @@ class App:
 
             # if snake hits itself
             if self.player.snakeHeadPos() in self.player.snakeBodyPos():
-                print('You ran into yourself! Game Over.')
+                messagebox.showinfo('Game over.','You ran into yourself!')
                 self.endApp()
                 
 
             #if snake hits edge of window
             if self.player.snakeHeadY() == 0 or self.player.snakeHeadY() > 590 or self.player.snakeHeadX() == 0 or self.player.snakeHeadX() == 600:
-                print('You hit the edge of the window! Game over.')
+                messagebox.showinfo('Game over.','You hit the edge!')
                 self.endApp() 
             
             
