@@ -6,7 +6,7 @@ class Player:
         self.head_color =(255,0,0)
         self.body_color = (255,255,0)
         self.speed = 5
-        self.length = 3 # no body parts yet
+        self.length = 3 # number of body parts
         self.direction = 0
 
 
@@ -22,7 +22,10 @@ class Player:
         elif self.direction == 3: # go down
             self.y[0] += self.speed
         
-            #update position of body
+        #update position of body
+        for body in range(self.length-1,0,-1):
+            self.x[i] = self.x[i-1]
+            self.y[i] = self.y[i-1]
 
 
     def change_direction(self,e):
