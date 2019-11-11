@@ -56,9 +56,10 @@ class App:
         self.drawGame()
         self.drawApple()
         pygame.display.flip()
+        speed = 0
 
         while self.running:
-            self.clock.tick(60)
+            self.clock.tick(40 + (speed * 5))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.endApp()
@@ -74,6 +75,7 @@ class App:
                 self.player.add_body()
                 # generate new apple
                 self.apple.newApple()
+                speed += 1
 
             # if snake hits itself
             if self.player.snakeHeadPos() in self.player.snakeBodyPos():
