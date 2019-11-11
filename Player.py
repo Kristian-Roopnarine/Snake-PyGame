@@ -6,7 +6,7 @@ class Player:
         self.head_color =(255,0,0)
         self.body_color = (255,255,0)
         self.speed = 5
-        self.length = 0 # no body parts yet
+        self.length = 3 # no body parts yet
         self.direction = 0
 
 

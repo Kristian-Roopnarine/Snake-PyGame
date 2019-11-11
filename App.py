@@ -20,16 +20,17 @@ class App:
         # get positions of snake and turn into rectangles
         snake_size = len(self.player.x)
 
-        for j in range(snake_size):
-            for i in range(snake_size):
-                if i == 0 and j == 0: # if snake head
-                    head = pygame.Rect(self.player.x[i],self.player.y[j],self.block,self.block)
-                    pygame.draw.rect(self.screen,self.player.head_color,head)
-                    #self.snake.append(head)
-                else: # if body
-                    rect = pygame.Rect(self.player.x[i],self.player.y[j],self.block,self.block)
-                    pygame.draw.rect(self.screen,self.player.body_color,rect)
-                    #self.snake.append(rect)
+        for i in range(snake_size):
+            
+            if i == 0: # if snake head
+                head = pygame.Rect(self.player.x[i],self.player.y[i],self.block,self.block)
+                pygame.draw.rect(self.screen,self.player.head_color,head)
+                
+
+            else: # if body
+                rect = pygame.Rect(self.player.x[i],self.player.y[i],self.block,self.block)
+                pygame.draw.rect(self.screen,self.player.body_color,rect)
+                    
 
     def drawGame(self):
         for y in range(self.height//10):
@@ -47,7 +48,6 @@ class App:
 
     def startApp(self):
         self.drawGame()
-        self.drawSnake()
         pygame.display.flip()
 
         while self.running:
