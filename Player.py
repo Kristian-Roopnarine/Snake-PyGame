@@ -1,8 +1,8 @@
 class Player:
 
     def __init__(self):
-        self.x = [] # position 0 is head
-        self.y = [] # position 0 is head
+        self.x = [50] # position 0 is head
+        self.y = [50] # position 0 is head
         self.head_color =(255,0,0)
         self.body_color = (255,255,0)
         self.speed = 5

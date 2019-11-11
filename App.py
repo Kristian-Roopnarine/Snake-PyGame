@@ -15,14 +15,18 @@ class App:
     
     def drawSnake(self):
         # get positions of snake and turn into rectangles
-        for y in self.player.y:
-            for x in self.player.x:
-                if x == 0: # if snake head
-                    rect = pygame.Rect(x,y,self.block,self.block)
+        snake_size = len(self.player.x)
+
+        for j in range(snake_size):
+            for i in range(snake_size):
+                if i == 0 and j == 0: # if snake head
+                    rect = pygame.Rect(self.player.x[i],self.player.y[j],self.block,self.block)
                     pygame.draw.rect(self.screen,self.player.head_color,rect)
+                    print('Head drawn')
                 else: # if body
-                    rect = pygame.Rect(x,y,self.block,self.block)
+                    rect = pygame.Rect(self.player.x[i],self.player.y[j],self.block,self.block)
                     pygame.draw.rect(self.screen,self.player.body_color,rect)
+                    print('Body drawn')
 
     def drawGame(self):
         for y in range(self.height//10):
