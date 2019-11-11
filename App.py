@@ -46,6 +46,7 @@ class App:
         self.screen.fill(self.background)
         self.drawSnake()
         self.drawApple()
+        pygame.display.set_caption('Snake Game. Your Score is: %s' % (self.player.score))
         pygame.display.update()
 
     def drawApple(self):
@@ -75,6 +76,8 @@ class App:
                 self.player.add_body()
                 # generate new apple
                 self.apple.newApple()
+                #increase score and speed
+                self.player.incScore()
                 speed += 1
 
             # if snake hits itself
@@ -84,7 +87,7 @@ class App:
                 
 
             #if snake hits edge of window
-            if self.player.snakeHeadY() == 0 or self.player.snakeHeadY() > 590 or self.player.snakeHeadX() == 0 or self.player.snakeHeadX() == 600:
+            if self.player.snakeHeadY() < 0 or self.player.snakeHeadY() == 600 or self.player.snakeHeadX() < 0 or self.player.snakeHeadX() == 600:
                 messagebox.showinfo('Game over.','You hit the edge!')
                 self.endApp() 
             

@@ -10,6 +10,8 @@ class Player:
         self.direction = 0
         self.updateCount = 0
         self.updateCountMax = 2
+        self.score = 0
+        
 
 
     def move(self):
@@ -76,3 +78,6 @@ class Player:
 
     def snakeBodyPos(self):
         return zip(self.x[1:],self.y[1:])
+    
+    def incScore(self):
+        self.score += 1
