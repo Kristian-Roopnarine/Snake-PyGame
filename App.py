@@ -25,11 +25,11 @@ class App:
                 if i == 0 and j == 0: # if snake head
                     head = pygame.Rect(self.player.x[i],self.player.y[j],self.block,self.block)
                     pygame.draw.rect(self.screen,self.player.head_color,head)
-                    self.snake.append(head)
+                    #self.snake.append(head)
                 else: # if body
                     rect = pygame.Rect(self.player.x[i],self.player.y[j],self.block,self.block)
                     pygame.draw.rect(self.screen,self.player.body_color,rect)
-                    self.snake.append(rect)
+                    #self.snake.append(rect)
 
     def drawGame(self):
         for y in range(self.height//10):
@@ -40,7 +40,7 @@ class App:
     def updateGame(self):
         self.screen.fill(self.background)
         self.drawSnake()
-        pygame.display.update(self.snake)
+        pygame.display.update()
 
     def drawApple(self):
         pass
@@ -55,6 +55,9 @@ class App:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.endApp()
+
+                if event.type == pygame.KEYDOWN:
+                    self.player.change_direction(event.key)
             
             self.player.move()
             self.updateGame()
