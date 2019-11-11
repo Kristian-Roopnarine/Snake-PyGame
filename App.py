@@ -61,7 +61,7 @@ class App:
             
             self.player.move()
             self.updateGame()
-            
+            time.sleep(.1)
 
         
 
