@@ -11,12 +11,15 @@ class App:
         self.background = (0,0,0)
         pygame.init()
     
-    def draw_snake(self):
+    def draw_snakehead(self):
         head = pygame.Rect(self.player.headx, self.player.heady, self.blocks, self.blocks)
         pygame.draw.rect(self.screen, self.player.head_color,head)
     
     def draw_body(self):
-        pass
+        for body in self.player.body:
+            x,y = body
+            body = pygame.Rect(x,y,self.blocks,self.blocks)
+            pygame.draw.rect(self.screen,self.player.body_color,body)
     
     def draw_apple(self):
         pass
@@ -31,7 +34,8 @@ class App:
 
     def refresh(self):
         self.screen.fill(self.background)
-        self.draw_snake()
+        self.draw_snakehead()
+        self.draw_body()
 
 
     def detect_keypress(self,e):
