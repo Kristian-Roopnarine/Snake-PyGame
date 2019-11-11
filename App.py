@@ -27,6 +27,7 @@ class App:
             for x in range(self.width//10):
                 rect = pygame.Rect(y * self.blocks, x * self.blocks,self.blocks,self.blocks)
                 pygame.draw.rect(self.screen,self.background,rect)
+        
 
     def refresh(self):
         self.screen.fill(self.background)
