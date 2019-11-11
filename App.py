@@ -46,7 +46,7 @@ class App:
         pygame.display.update()
 
     def drawApple(self):
-        apple = pygame.Rect(self.apple.position[0],self.apple.position[1],self.block,self.block)
+        apple = pygame.Rect(self.apple.getX(),self.apple.getY(),self.block,self.block)
         pygame.draw.rect(self.screen,self.apple.color,apple)
 
     def startApp(self):
@@ -65,12 +65,12 @@ class App:
                     
             
             # if snake eats apple
-            if snake eats apple:
+            if self.player.snakeHeadPos() == self.apple.pos():
                 self.apple.newApple()
 
             # if snake hits itself
-            if snake hits itself:
-                self.endApp()
+            #if snake hits itself:
+                #self.endApp()
             
             self.player.move()
             self.updateGame()

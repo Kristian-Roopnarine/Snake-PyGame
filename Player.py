@@ -13,7 +13,6 @@ class Player:
 
 
     def move(self):
-
         #update position of body
         self.updateCount += 1
 
@@ -47,3 +46,7 @@ class Player:
 
     def add_body(self):
         pass
+
+
+    def snakeHeadPos(self):
+        return self.x[0],self.y[0]
