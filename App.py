@@ -1,4 +1,5 @@
 import pygame
+from Player import Player
 
 class App:
 
@@ -8,12 +9,17 @@ class App:
         self.player = Player()
         self.block = 10
         self.background = (0,0,0)
+        pygame.init()
+        self.screen = pygame.display.set_mode((self.width,self.height))
     
     def drawSnake(self):
         pass
 
     def drawGame(self):
-        pass
+        for y in range(self.height//10):
+            for x in range(self.width//10):
+                rect = pygame.Rect(x * self.block ,y* self.block ,self.block,self.block)
+                pygame.draw.rect(self.screen,self.background,rect)
 
     def updateGame(self):
         pass
