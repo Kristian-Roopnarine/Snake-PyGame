@@ -1,5 +1,6 @@
 import pygame
 from Player import Player
+import time
 
 class App:
 
@@ -49,7 +50,10 @@ class App:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.endApp()
-                
+            
+            self.player.move()
+            time.sleep(100/1000)
+
         
 
 

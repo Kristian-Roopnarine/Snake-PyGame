@@ -22,6 +22,7 @@ class Player:
         elif self.direction ==3: # go down
             self.y[0] += self.speed
         
+        print(self.x,self.y)
             #update position of body
 
 
