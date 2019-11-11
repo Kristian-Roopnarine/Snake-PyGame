@@ -12,7 +12,8 @@ class App:
         pygame.init()
     
     def draw_snake(self):
-        pass
+        head = pygame.Rect(self.player.headx, self.player.heady, self.blocks, self.blocks)
+        pygame.draw.rect(self.screen, self.player.head_color,head)
     
     def draw_body(self):
         pass
