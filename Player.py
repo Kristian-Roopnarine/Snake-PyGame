@@ -29,7 +29,7 @@ class Player:
         '''Checks whether or not the head of the snake hits the body'''
         pass
 
-    def change_direction(self):
+    def change_direction(self,e):
         '''Changes direction upon keypress
         0 = right
         1 = down
@@ -37,13 +37,13 @@ class Player:
         3 = up
         '''
 
-        if key press to right:
+        if e == 275:
             self.direction = 0
-        elif key press to down:
+        elif e == 274:
             self.direction = 1
-        elif key press to left:
+        elif e == 276:
             self.direction = 2
-        elif key press to up:
+        elif e == 273:
             self.direction = 3
 
         return self.direction
