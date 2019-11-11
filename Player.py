@@ -9,7 +9,7 @@ class Player:
         self.speed = 5
 
     def move(self):
-        '''Causes snake to move'''
+        '''Moves snake at certain speed'''
         if self.direction == 0:
             self.headx += self.speed
         elif self.direction == 1:
