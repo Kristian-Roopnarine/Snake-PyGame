@@ -1,5 +1,6 @@
 import pygame
 from Player import Player
+from Apple import Apple
 import time
 import random
 
@@ -41,12 +42,12 @@ class App:
     def updateGame(self):
         self.screen.fill(self.background)
         self.drawSnake()
+        self.drawApple()
         pygame.display.update()
 
     def drawApple(self):
-        x,y = random.randint(30,450),random.randint(30,450)
-        apple = pygame.Rect(x,y,self.block,self.block)
-        pygame.draw.rect(self.screen,self.applecolor,apple)
+        apple = pygame.Rect(self.apple.position[0],self.apple.position[1],self.block,self.block)
+        pygame.draw.rect(self.screen,self.apple.color,apple)
 
     def startApp(self):
         self.drawGame()
@@ -61,11 +62,15 @@ class App:
 
                 if event.type == pygame.KEYDOWN:
                     self.player.change_direction(event.key)
+                    
             
             # if snake eats apple
+            if snake eats apple:
+                self.apple.newApple()
 
             # if snake hits itself
-
+            if snake hits itself:
+                self.endApp()
             
             self.player.move()
             self.updateGame()

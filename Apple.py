@@ -15,4 +15,4 @@ class Apple:
         return self.position[0]
 
     def newApple(self):
-        self.position = [random.randint(30,450),random.randint(30,450)]
+        self.position = [random.randint(20,470),random.randint(20,470)]
