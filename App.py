@@ -11,9 +11,18 @@ class App:
         self.background = (0,0,0)
         pygame.init()
         self.screen = pygame.display.set_mode((self.width,self.height))
+        self.running = True
     
     def drawSnake(self):
-        pass
+        # get positions of snake and turn into rectangles
+        for y in self.player.y:
+            for x in self.player.x:
+                if x == 0: # if snake head
+                    rect = pygame.Rect(x,y,self.block,self.block)
+                    pygame.draw.rect(self.screen,self.player.head_color,rect)
+                else: # if body
+                    rect = pygame.Rect(x,y,self.block,self.block)
+                    pygame.draw.rect(self.screen,self.player.body_color,rect)
 
     def drawGame(self):
         for y in range(self.height//10):
@@ -28,7 +37,17 @@ class App:
         pass
 
     def startApp(self):
-        pass
+        self.drawGame()
+        self.drawSnake()
+        pygame.display.flip()
+
+        while self.running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.endApp()
+                
+        
+
 
     def endApp(self):
-        pass
+        self.running = False
