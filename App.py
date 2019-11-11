@@ -66,6 +66,9 @@ class App:
             
             # if snake eats apple
             if self.player.snakeHeadPos() == self.apple.pos():
+                # add snake body
+                
+                # generate new apple
                 self.apple.newApple()
 
             # if snake hits itself

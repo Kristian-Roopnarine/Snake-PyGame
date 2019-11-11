@@ -9,7 +9,7 @@ class Player:
         self.length = 3 # number of body parts
         self.direction = 0
         self.updateCount = 0
-        self.updateCountMax = 5
+        self.updateCountMax = 2
 
 
     def move(self):
@@ -45,7 +45,22 @@ class Player:
             self.direction = 1
 
     def add_body(self):
-        pass
+        if self.direction == 0: # right
+            self.x.append(self.x[-1] - self.speed)
+            self.y.append(self.y[-1])
+
+        elif self.direction == 1: # left
+            self.x.append(self.x[-1] + self.speed)
+            self.y.append(self.y[-1])
+
+        elif self.direction == 2: # up
+            self.y.append(self.y[-1] + self.speed)
+            self.x.append(self.x[-1])
+
+        elif self.direction == 3: # down
+            self.y.append(self.y[-1] - self.speed)
+            self.x.append(self.x[-1])
+
 
 
     def snakeHeadPos(self):
