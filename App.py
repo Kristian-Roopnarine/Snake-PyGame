@@ -66,14 +66,23 @@ class App:
             
             # if snake eats apple
             if self.player.snakeHeadPos() == self.apple.pos():
+
                 # add snake body
-                
+                self.player.add_body()
                 # generate new apple
                 self.apple.newApple()
 
             # if snake hits itself
-            #if snake hits itself:
-                #self.endApp()
+            if self.player.snakeHeadPos() in self.player.snakeBodyPos():
+                print('You ran into yourself! Game Over.')
+                self.endApp()
+                
+
+            #if snake hits edge of window
+            if self.player.snakeHeadY() == 0 or self.player.snakeHeadY() > 590 or self.player.snakeHeadX() == 0 or self.player.snakeHeadX() == 600:
+                print('You hit the edge of the window! Game over.')
+                self.endApp() 
+            
             
             self.player.move()
             self.updateGame()
