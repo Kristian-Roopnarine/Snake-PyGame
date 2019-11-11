@@ -1,6 +1,7 @@
 import pygame
 from Player import Player
 import time
+import random
 
 class App:
 
@@ -13,8 +14,8 @@ class App:
         pygame.init()
         self.screen = pygame.display.set_mode((self.width,self.height))
         self.running = True
-        self.snake = []
         self.clock = pygame.time.Clock()
+        self.apple = Apple()
     
     def drawSnake(self):
         # get positions of snake and turn into rectangles
@@ -26,7 +27,6 @@ class App:
                 head = pygame.Rect(self.player.x[i],self.player.y[i],self.block,self.block)
                 pygame.draw.rect(self.screen,self.player.head_color,head)
                 
-
             else: # if body
                 rect = pygame.Rect(self.player.x[i],self.player.y[i],self.block,self.block)
                 pygame.draw.rect(self.screen,self.player.body_color,rect)
@@ -44,14 +44,17 @@ class App:
         pygame.display.update()
 
     def drawApple(self):
-        pass
+        x,y = random.randint(30,450),random.randint(30,450)
+        apple = pygame.Rect(x,y,self.block,self.block)
+        pygame.draw.rect(self.screen,self.applecolor,apple)
 
     def startApp(self):
         self.drawGame()
+        self.drawApple()
         pygame.display.flip()
 
         while self.running:
-            self.clock.tick(30)
+            self.clock.tick(60)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.endApp()
@@ -59,9 +62,13 @@ class App:
                 if event.type == pygame.KEYDOWN:
                     self.player.change_direction(event.key)
             
+            # if snake eats apple
+
+            # if snake hits itself
+
+            
             self.player.move()
             self.updateGame()
-            time.sleep(.1)
 
         
 
