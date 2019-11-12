@@ -19,6 +19,7 @@ class App:
         self.running = True
         self.clock = pygame.time.Clock()
         self.apple = Apple()
+        self.active = False
         Tk().wm_withdraw()
     
     def drawSnake(self):
@@ -56,57 +57,77 @@ class App:
     def startOver(self):
         self.player.score = 0
         self.player.length = 0
+        self.player.direction = None
         self.player.x = [50]
         self.player.y = [50]
+        self.player.speed = 0
+        self.active = False
 
+    def endApp(self):
+        self.running = False
+        
     def startApp(self):
         self.drawGame()
+        self.drawSnake()
         self.drawApple()
         pygame.display.flip()
-        speed = 0
+        self.player.speed = 0
 
         while self.running:
-            self.clock.tick(40 + (speed * 5))
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.endApp()
+            if self.active:
+                self.clock.tick(40 + (self.player.speed * 5))
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        self.endApp()
 
-                if event.type == pygame.KEYDOWN:
-                    self.player.change_direction(event.key)
-                    
-            
-            # if snake eats apple
-            if self.player.snakeHeadPos() == self.apple.pos():
-
-                # add snake body
-                self.player.add_body()
-                # generate new apple
-                self.apple.newApple()
-                #increase score and speed
-                self.player.incScore()
-                speed += 1
-
-            # if snake hits itself
-            if self.player.snakeHeadPos() in self.player.snakeBodyPos():
-                if messagebox.askyesnocancel('Game over.','You ran into yourself! Do you want to start over?') == True:
-                    self.startOver()
-                else:
-                    self.endApp()
+                    if event.type == pygame.KEYDOWN:
+                        self.player.change_direction(event.key)
+                        
                 
+                # if snake eats apple
+                if self.player.snakeHeadPos() == self.apple.pos():
 
-            #if snake hits edge of window
-            if self.player.snakeHeadY() < 0 or self.player.snakeHeadY() == 600 or self.player.snakeHeadX() < 0 or self.player.snakeHeadX() == 600:
-                if messagebox.askyesnocancel('Game over.','You ran into yourself! Do you want to start over?') == True:
-                    self.startOver()
-                else:
-                    self.endApp()
-            
-            
-            self.player.move()
-            self.updateGame()
+                    # add snake body
+                    self.player.add_body()
+
+                    # generate new apple
+                    self.apple.newApple()
+
+                    #increase score and speed
+                    self.player.incScore()
+                    self.player.speed += 1
+
+                # if snake hits itself
+                if self.player.snakeHeadPos() in self.player.snakeBodyPos():
+                    if messagebox.askyesnocancel('Game over.','You ran into yourself! Do you want to start over?') == True:
+                        self.startOver()
+                    else:
+                        self.endApp()
+                    
+
+                #if snake hits edge of window
+                if self.player.snakeHeadY() < 0 or self.player.snakeHeadY() == 600 or self.player.snakeHeadX() < 0 or self.player.snakeHeadX() == 600:
+                    if messagebox.askyesnocancel('Game over.','You ran into yourself! Do you want to start over?') == True:
+                        self.startOver()
+                    else:
+                        self.endApp()
+                
+                
+                self.player.move()
+                self.updateGame()
+
+            else:
+                #waits for key input
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        self.endApp()
+
+                    if event.type == pygame.KEYDOWN:
+                        self.player.change_direction(event.key)
+                        self.active = True
+
 
         
 
 
-    def endApp(self):
-        self.running = False
+    

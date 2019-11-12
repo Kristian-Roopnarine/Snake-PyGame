@@ -5,9 +5,10 @@ class Player:
         self.y = [50] # position 0 is head
         self.head_color =(255,0,0)
         self.body_color = (255,255,0)
-        self.speed = 10
+        self.steps = 10
+        self.speed = 0
         self.length = 0 # number of body parts
-        self.direction = 0
+        self.direction = None # game starts paused
         self.updateCount = 0
         self.updateCountMax = 2
         self.score = 0
@@ -27,13 +28,13 @@ class Player:
 
             #update position of head
             if self.direction == 0 : # go right
-                self.x[0] += self.speed
+                self.x[0] += self.steps
             elif self.direction == 1: # go left
-                self.x[0] -= self.speed
+                self.x[0] -= self.steps
             elif self.direction == 2: # go up
-                self.y[0] -= self.speed
+                self.y[0] -= self.steps
             elif self.direction == 3: # go down
-                self.y[0] += self.speed
+                self.y[0] += self.steps
 
             self.updateCount = 0
 
@@ -49,19 +50,19 @@ class Player:
 
     def add_body(self):
         if self.direction == 0: # right
-            self.x.append(self.x[-1] - self.speed)
+            self.x.append(self.x[-1] - self.steps)
             self.y.append(self.y[-1])
 
         elif self.direction == 1: # left
-            self.x.append(self.x[-1] + self.speed)
+            self.x.append(self.x[-1] + self.steps)
             self.y.append(self.y[-1])
 
         elif self.direction == 2: # up
-            self.y.append(self.y[-1] + self.speed)
+            self.y.append(self.y[-1] + self.steps)
             self.x.append(self.x[-1])
 
         elif self.direction == 3: # down
-            self.y.append(self.y[-1] - self.speed)
+            self.y.append(self.y[-1] - self.steps)
             self.x.append(self.x[-1])
         
         self.length += 1
