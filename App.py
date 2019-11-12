@@ -52,6 +52,12 @@ class App:
     def drawApple(self):
         apple = pygame.Rect(self.apple.getX(),self.apple.getY(),self.block,self.block)
         pygame.draw.rect(self.screen,self.apple.color,apple)
+    
+    def startOver(self):
+        self.player.score = 0
+        self.player.length = 0
+        self.player.x = [50]
+        self.player.y = [50]
 
     def startApp(self):
         self.drawGame()
@@ -82,14 +88,18 @@ class App:
 
             # if snake hits itself
             if self.player.snakeHeadPos() in self.player.snakeBodyPos():
-                messagebox.showinfo('Game over.','You ran into yourself!')
-                self.endApp()
+                if messagebox.askyesnocancel('Game over.','You ran into yourself! Do you want to start over?') == True:
+                    self.startOver()
+                else:
+                    self.endApp()
                 
 
             #if snake hits edge of window
             if self.player.snakeHeadY() < 0 or self.player.snakeHeadY() == 600 or self.player.snakeHeadX() < 0 or self.player.snakeHeadX() == 600:
-                messagebox.showinfo('Game over.','You hit the edge!')
-                self.endApp() 
+                if messagebox.askyesnocancel('Game over.','You ran into yourself! Do you want to start over?') == True:
+                    self.startOver()
+                else:
+                    self.endApp()
             
             
             self.player.move()
